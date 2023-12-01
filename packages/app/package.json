@@ -2,7 +2,6 @@
   "name": "app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,15 +9,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@biconomy/account": "^3.1.1",
+    "@biconomy/bundler": "^3.1.1",
     "@biconomy/common": "^3.1.1",
+    "@biconomy/core-types": "^3.1.1",
     "@biconomy/modules": "^3.1.1",
+    "@biconomy/paymaster": "^3.1.1",
+    "@borislav.itskov/schnorrkel.js": "^2.0.83",
+    "assert": "^2.1.0",
+    "bigi": "^1.4.2",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "ecurve": "^1.0.6",
+    "ethers": "^5.7.2",
+    "js-sha3": "^0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ethers": "^5.7.2"
+    "secp256k1": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/secp256k1": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",

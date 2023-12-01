@@ -15,28 +15,32 @@ contract SchnorrValidationModule is BaseAuthorizationModule {
 
     mapping(address => address) internal smartAccountOwners;
 
-    error NoMultisigAddressRegisteredForSmartAccount(address smartAccount);
+    error NoschnorrVirtualAddressRegisteredForSmartAccount(
+        address smartAccount
+    );
     error AlreadyInitedForSmartAccount(address smartAccount);
-    error ZeroAddressNotAllowedAsMultisigAddress();
+    error ZeroAddressNotAllowedAsschnorrVirtualAddress();
 
     function initForSmartAccount(
-        address multisigAddress
+        address schnorrVirtualAddress
     ) external returns (address) {
         if (smartAccountOwners[msg.sender] != address(0))
             revert AlreadyInitedForSmartAccount(msg.sender);
-        if (multisigAddress == address(0))
-            revert ZeroAddressNotAllowedAsMultisigAddress();
-        smartAccountOwners[msg.sender] = multisigAddress;
+        if (schnorrVirtualAddress == address(0))
+            revert ZeroAddressNotAllowedAsschnorrVirtualAddress();
+        smartAccountOwners[msg.sender] = schnorrVirtualAddress;
         return address(this);
     }
 
-    function getMultisigAddress(
+    function getschnorrVirtualAddress(
         address smartAccount
     ) external view returns (address) {
-        address multisigAddress = smartAccountOwners[smartAccount];
-        if (multisigAddress == address(0))
-            revert NoMultisigAddressRegisteredForSmartAccount(smartAccount);
-        return multisigAddress;
+        address schnorrVirtualAddress = smartAccountOwners[smartAccount];
+        if (schnorrVirtualAddress == address(0))
+            revert NoschnorrVirtualAddressRegisteredForSmartAccount(
+                smartAccount
+            );
+        return schnorrVirtualAddress;
     }
 
     function validateUserOp(
@@ -78,7 +82,9 @@ contract SchnorrValidationModule is BaseAuthorizationModule {
     ) internal view returns (bool) {
         address expectedAddress = smartAccountOwners[smartAccount];
         if (expectedAddress == address(0))
-            revert NoMultisigAddressRegisteredForSmartAccount(smartAccount);
+            revert NoschnorrVirtualAddressRegisteredForSmartAccount(
+                smartAccount
+            );
 
         address recovered = _verifySchnorr(dataHash, signature);
 
