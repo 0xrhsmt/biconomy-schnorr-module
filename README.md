@@ -11,6 +11,8 @@ https://biconomy-schnorr-module.vercel.app/
 
 ## Demo Video
 
+https://youtu.be/VveeF-_OxMc
+
 ## Architecture Overview
 
 <img src="docs/assets/overview.png"  />
