@@ -3,8 +3,7 @@
 ## Description
 
 This is a module to demonstrate the use of Biconomy's Schnorr Validation Module.<br>
-This module can be used to generate a Schnorr Multi-Signature for a given message and private key.
-
+This module can construct Schnorr aggregate signatures that can be verified on-chain.
 
 ## Live Demo
 
@@ -12,7 +11,12 @@ https://biconomy-schnorr-module.vercel.app/
 
 ## Demo Video
 
-## Flow Diagram
+## Architecture Overview
+
+<img src="docs/assets/overview.png"  />
+
+* The signers each perform a signature.
+* The Schnorr Validation Module aggregates the signatures into one and sends the user operation to the bundler.
 
 ## Usage
 
