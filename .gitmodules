@@ -1,0 +1,3 @@
+[submodule "packages/schnorr-validation-module/lib/forge-std"]
+	path = packages/schnorr-validation-module/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
