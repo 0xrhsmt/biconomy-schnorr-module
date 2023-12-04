@@ -3,7 +3,7 @@ import {
   BaseValidationModuleConfig,
   ModuleInfo as BaseModuleInfo,
 } from "@biconomy/modules";
-import Schnorrkel, {
+import {
   Key,
   Signature,
   PublicNonces,

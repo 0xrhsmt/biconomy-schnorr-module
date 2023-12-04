@@ -1,4 +1,4 @@
-import Schnorrkel, {
+import {
   Key,
   PublicNonces,
   KeyPair,
