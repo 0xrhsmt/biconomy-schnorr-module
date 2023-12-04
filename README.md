@@ -2,8 +2,9 @@
 
 ## Description
 
-This is a module to demonstrate the use of Biconomy's Schnorr Validation Module.<br>
-This module can construct Schnorr aggregate signatures that can be verified on-chain.
+This is a module to demonstrate the use of Schnorr signature in Biconomy Module.<br>
+You can aggregate signatures to form N/N multisignatures that can be verified on-chain.<br>
+This enables Biconomy Smart Wallets to verify Schnorr signatures on-chain for about the same gas cost as a regular ECDSA signature!
 
 ## Live Demo
 
