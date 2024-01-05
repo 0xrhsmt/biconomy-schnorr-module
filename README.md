@@ -24,8 +24,6 @@ https://youtu.be/VveeF-_OxMc
 
 ## Basic Usage
 
-The following example demonstrates how to use the Schnorr Validation Module.
-
 ```typescript
 import {
   SchnorrSigner,
@@ -98,6 +96,9 @@ await accountAPI.sendUserOp(op, {
     partnerSignatures,
 } as any);
 ```
+
+* The above example demonstrates how to use the Schnorr Validation Module.
+* The sample code for the demo application is [here](packages/demo-app/src/App.tsx).
 
 
 ## Architecture Overview
