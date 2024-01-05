@@ -1,5 +1,6 @@
 node_modules
 .env
+/broadcast
 
 # Hardhat files
 /cache
