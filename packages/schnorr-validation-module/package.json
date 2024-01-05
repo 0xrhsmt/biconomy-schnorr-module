@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "pretest": "hardhat compile",
+    "pretest": "hardhat compile && sh test/check-hardhat-node.sh",
     "test": "vitest"
   },
   "keywords": [],
