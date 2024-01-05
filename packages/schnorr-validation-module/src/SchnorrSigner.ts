@@ -6,7 +6,7 @@ import {
 import { ethers } from "ethers";
 import secp256k1 from "secp256k1";
 import { Buffer } from "buffer";
-import { getSchnorrkelInstance } from "./Schnorrkel";
+import { getSchnorrkelInstance } from "./schnorrkel";
 
 const schnorrkel = getSchnorrkelInstance();
 

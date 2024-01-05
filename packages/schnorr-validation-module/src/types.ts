@@ -9,7 +9,7 @@ import {
   PublicNonces,
 } from "@borislav.itskov/schnorrkel.js/src/index";
 
-import { SchnorrSigner } from "./SchnorrSigner";
+import { SchnorrSigner } from "./schnorrSigner";
 
 export interface SchnorrValidationModuleConfig
   extends BaseValidationModuleConfig {

@@ -7,7 +7,7 @@ import Schnorrkel, {
   PublicNonces,
 } from "@borislav.itskov/schnorrkel.js/src/index";
 
-import { SchnorrSigner } from "./SchnorrSigner";
+import { SchnorrSigner } from "./schnorrSigner";
 import {
   SchnorrValidationModuleConfig,
   SchnorrValidationModuleInfo,
