@@ -44,7 +44,6 @@ function App() {
     BigNumber.from(0)
   );
   const [recipientAddress, setRecipientAddress] = useState<string>("");
-  const [recipientAmount, setRecipientAmount] = useState<string>("");
   const [despotTxHashes, setSespotTxHashes] = useState<string[]>([]);
   const [latestOpTxHash, setLatestOpTxHash] = useState<string>("");
 
@@ -82,11 +81,15 @@ function App() {
     if (!accountAPI) {
       return;
     }
+    if (recipientAddress === "") {
+      alert("Please enter recipient address");
+      return;
+    }
 
     const op = await accountAPI.buildUserOp([
       {
         to: recipientAddress,
-        value: ethers.utils.parseEther(recipientAmount),
+        value: ethers.utils.parseEther("0.01"),
       },
     ]);
     const opHash = await accountAPI.getUserOpHash(op);
@@ -114,7 +117,6 @@ function App() {
     publicKeys,
     publicNonces,
     recipientAddress,
-    recipientAmount,
     signers,
     refreshAccountBalance,
   ]);
@@ -172,23 +174,22 @@ function App() {
   }, [provider, refreshAccountBalance, signers]);
 
   const isSignerAddable = accountBalance.eq(0);
-  const isDepositable = accountAddress !== "";
-  const isTransferable =
-    recipientAddress !== "" &&
-    recipientAmount !== "" &&
-    accountAddress !== "" &&
-    accountBalance.gt(0);
+  const isDepositable = accountAddress !== "" && !accountBalance.gt(0);
+  const isTransferable = accountAddress !== "" && accountBalance.gt(0);
 
   return (
     <div className="max-w-[750px] mx-auto px-8 p-8">
-      <div className="flex flex-row justify-center items-center space-x-4 mb-10">
-        <h1 className="text-2xl text-center font-bold">Transfer App</h1>
+      <div className="flex flex-col justify-center items-center mb-10">
+        <h1 className="text-2xl text-center font-bold">Demo App</h1>
+        <p className="text-center text-gray-600">
+          Use biconomy schnorr module to transfer native tokens
+        </p>
       </div>
 
       <div className="card w-full bg-base-100 shadow-xl mb-8">
         <div className="card-body">
           <div className="mb-8">
-            <h2 className="card-title mb-8">Create Signers</h2>
+            <h2 className="card-title mb-8">Step 1: Setup Multiple Signers</h2>
             <div className="grid grid-cols-1 gap-4 mb-4">
               {signers.map((signer, index) => {
                 return (
@@ -210,19 +211,26 @@ function App() {
             </div>
 
             <button
-              className="btn btn-block btn-primary"
+              className="btn btn-block btn-primary mb-8"
               onClick={handleAddSigner}
               disabled={!isSignerAddable}
             >
               Add Signer
             </button>
+
+            <p className="">
+              Predicted Biconomy Smart Account:{" "}
+              {accountAddress ? accountAddress : "N/A"}
+            </p>
           </div>
 
           <div className="mb-8">
-            <h2 className="card-title mb-4">Deposit</h2>
+            <h2 className="card-title mb-4">
+              Step 2: Deposit Native Token To Biconomy Smart Account
+            </h2>
             <div className="py-8">
               <p className="mb-4">
-                Address: {accountAddress ? accountAddress : "N/A"}
+                To: {accountAddress ? accountAddress : "N/A"}
               </p>
               <p className="mb-4">
                 Balance: {ethers.utils.formatEther(accountBalance)}
@@ -243,7 +251,7 @@ function App() {
                   return (
                     <div className="py-2" key={index}>
                       <p>
-                        Tx Hash:{" "}
+                        Deposit Tx Hash:{" "}
                         <a
                           className="link-primary"
                           href={`https://mumbai.polygonscan.com/tx/${txHash}`}
@@ -260,7 +268,9 @@ function App() {
           </div>
 
           <div className=" mb-6">
-            <h2 className="card-title mb-4">Transfer</h2>
+            <h2 className="card-title mb-4">
+              Step 3: Send User Op Using Schnorr Module
+            </h2>
 
             <div className="w-full mb-4">
               <div>
@@ -276,25 +286,14 @@ function App() {
                 />
               </div>
 
-              <div>
-                <div className="label">
-                  <span className="label-text">Amount</span>
-                </div>
-                <input
-                  type="text"
-                  value={recipientAmount}
-                  placeholder={` Amount`}
-                  className="input input-bordered  w-full"
-                  onChange={(e) => setRecipientAmount(e.target.value)}
-                />
-              </div>
+              <p className="my-4">Amount: 0.01</p>
             </div>
             <button
               className="btn btn-block btn-primary"
               onClick={handleTransfer}
               disabled={!isTransferable}
             >
-              Transfer
+              Send User Operation
             </button>
           </div>
 
@@ -302,7 +301,7 @@ function App() {
             <div className="mb-8">
               <div className="">
                 <p className="">
-                  Tx Hash:{" "}
+                  User Op Tx Hash:{" "}
                   <a
                     className="link-primary"
                     href={`https://mumbai.polygonscan.com/tx/${latestOpTxHash}`}
