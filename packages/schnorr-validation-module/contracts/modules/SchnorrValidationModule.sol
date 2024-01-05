@@ -11,7 +11,7 @@ contract SchnorrValidationModule is BaseAuthorizationModule {
     bytes4 internal constant ERC1271_MAGICVALUE_BYTES32 = 0x1626ba7e;
 
     string public constant NAME = "Schnorr Validation Module";
-    string public constant VERSION = "0.1.0";
+    string public constant VERSION = "1.0.0";
 
     mapping(address => address) internal smartAccountOwners;
 

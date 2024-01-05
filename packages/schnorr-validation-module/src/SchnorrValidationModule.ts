@@ -1,6 +1,6 @@
 import { Signer, ethers } from "ethers";
 import { Bytes } from "ethers/lib/utils";
-import { ModuleVersion, BaseValidationModule } from "@biconomy/modules";
+import { ModuleVersion, BaseValidationModule, BaseValidationModuleConfig } from "@biconomy/modules";
 import Schnorrkel, {
   Key,
   Signature,
@@ -18,7 +18,6 @@ import {
 } from "./constants";
 import { computeSchnorrVirtualAddr } from "./utils";
 
-// Could be renamed with suffix API
 export class SchnorrValidationModule extends BaseValidationModule {
   moduleAddress!: string;
   signer!: SchnorrSigner;
@@ -27,7 +26,7 @@ export class SchnorrValidationModule extends BaseValidationModule {
 
   version: ModuleVersion = "V1_0_0";
 
-  private constructor(moduleConfig: SchnorrValidationModuleConfig) {
+  private constructor(moduleConfig: BaseValidationModuleConfig) {
     super(moduleConfig);
   }
 
@@ -85,7 +84,7 @@ export class SchnorrValidationModule extends BaseValidationModule {
     userOpHash: string,
     params?: SchnorrValidationModuleInfo
   ): Promise<string> {
-    const signature = await this._signMessage(
+    const signature = await this._multiSignMessage(
       userOpHash,
       params?.partnerSignatures || []
     );
@@ -97,17 +96,17 @@ export class SchnorrValidationModule extends BaseValidationModule {
     throw new Error("Method not implemented.");
   }
 
-  private async _signMessage(
+  private async _multiSignMessage(
     message: Bytes | string,
     partnerSignatures: Signature[]
   ): Promise<string> {
-    const { signature: mySignature, challenge } = this.signer.multiSignMessage(
+    const { signature: selfSignature, challenge } = this.signer.multiSignMessage(
       message as any,
       this.publicKeys,
       this.publicNonces
     );
     const summedSignature = Schnorrkel.sumSigs([
-      mySignature,
+      selfSignature,
       ...partnerSignatures,
     ]);
 
