@@ -2,7 +2,7 @@
 
 This is the Biconomy Schnorr module that uses Schnorr signatures validation. You can aggregate signatures into N/N multi-signatures that can be verified on-chain for about the same gas cost as a regular ECDSA signature!
 
-### Why use Schnorr signatures with Biconomy?
+#### Why use Schnorr signatures?
 
 Multi-signatures is one of the most powerful elements in Web3.<br>
 It can be used by DAOs but also by individuals to improve their security.<br>
@@ -12,13 +12,13 @@ Schnorr signatures is an on-chain verifiable, easy to implement and very flexibl
 <br>
 More details here, ["Schnorrkel.js: Efficient Multi-sigs via Schnorr Signatures"](https://hackmd.io/@0xbobby/rkIGEBVb2)<br>
 
-## Live Demo
+####  Live Demo
 
 https://biconomy-schnorr-module.vercel.app/
 
 <img src="docs/assets/demo.png" width="150"  />
 
-## Demo Video
+####  Demo Video
 
 https://youtu.be/VveeF-_OxMc
 
