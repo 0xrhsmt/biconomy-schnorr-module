@@ -104,6 +104,7 @@ function App() {
 
     const opRes = await accountAPI.sendUserOp(op, {
       partnerSignatures,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     const opStatusRes = await opRes.waitForTxHash();
