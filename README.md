@@ -119,6 +119,33 @@ await accountAPI.sendUserOp(op, {
 | Avalanche Fuji | [0x6523e21c4bca777055393bb4a99b13665bf513c2](https://testnet.snowtrace.io/address/0x6523e21c4bca777055393bb4a99b13665bf513c2) |
 | Celo Alfajores | [0x6523e21c4bca777055393bb4a99b13665bf513c2](https://alfajores.celoscan.io/address/0x6523e21c4bca777055393bb4a99b13665bf513c2) |
 
+## Development
+
+### Smart Contracts
+
+To run tests
+
+```bash
+$cd packages/schnorr-validation-module/
+$pnpm run test
+```
+
+To deploy
+
+```bash
+$cd packages/schnorr-validation-module/
+$forge script ./script/SchnorrValidationModule.s.sol -f $RPC_URL  --broadcast
+```
+
+### Demo App
+
+To run the demo app
+
+```bash
+$cd packages/demo-app/
+$pnpm run dev
+```
+
 
 ## License
 
